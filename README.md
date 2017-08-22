@@ -17,7 +17,7 @@ Supported Targets
     * ARM (32-bit/64-bit)
     * MIPS (big-endian only)
 
-   Note that hardware-accelerated AES crypto is supported on 64-bit Intel and ARM.
+   Note that hardware-accelerated AES crypto is supported on 64-bit Intel (x86_64) and ARM (armv8a).
 
 2. Openwrt `.ipk` package and binary for ar71xx:
 
