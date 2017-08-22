@@ -14,4 +14,4 @@ clean:
 	$(eval DELIMG := $(shell docker images -q --filter reference='$(IMAGE)-*'))
 	! [ -z "$(DELIMG)" ] && docker rmi $(DELIMG) || true
 
-.PHONY: all musl openwrt-% clean
+.PHONY: all clean linux-%
