@@ -1,0 +1,28 @@
+diff --git a/common.h b/common.h
+index 8df9937..8e191f3 100644
+--- a/common.h
++++ b/common.h
+@@ -31,7 +31,9 @@
+ #include <fcntl.h>
+ #include <byteswap.h>
+ #include <arpa/inet.h>
++#ifndef HAVE_MUSL
+ #include <linux/if_ether.h>
++#endif
+ #include <linux/filter.h>
+ #include <sys/time.h>
+ #include <time.h>
+diff --git a/log.h b/log.h
+index 30e3b36..da763f9 100755
+--- a/log.h
++++ b/log.h
+@@ -36,7 +36,9 @@
+ #include <sys/socket.h>
+ #include <sys/types.h>
+ #include <arpa/inet.h>
++#ifndef HAVE_MUSL
+ #include <linux/if_ether.h>
++#endif
+ #include <linux/filter.h>
+ 
+ #include <sys/time.h>
