@@ -9,8 +9,6 @@ cd /build
 GIT_SSL_NO_VERIFY=true git clone --recursive ${REPO}
 cd udp2raw-tunnel
 git checkout "${REV}"
-GITREV="$(git rev-parse --short HEAD)"
-GITDATE=$(date -d "$(git log -1 --format=%ai)" +%y%m%d)
 
 # Patch to support musl
 patch -p1 < ../patches/001-musl-headers.patch
@@ -44,7 +42,7 @@ done
 
 # Packaging
 BINS=("${ARCHS[@]/#/${NAME}_}")
-PREFIX="${NAME}-${GITDATE}-${GITREV}"
+PREFIX="${NAME}-${REV}"
 tar --xform="s%^%${PREFIX}/%" -zcf ${TAR} \
   $(IFS=" "; echo "${BINS[*]}")
 echo "==> Done"

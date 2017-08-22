@@ -1,16 +1,13 @@
 NAME=udp2raw
 IMAGE=$(NAME)-docker
-VER=master
+VER=e6f0ed0
 
-all: musl openwrt-uclibc openwrt-lede
+all: linux-musl linux-openwrt-uclibc linux-openwrt-lede
 
-musl:
-	docker build --force-rm -t $(IMAGE)-$@ --build-arg REV=$(VER) -f $@/Dockerfile .
-	docker run --rm --entrypoint cat $(IMAGE)-$@ /bin.tgz > $(NAME)-$@-bin.tar.gz
-
-openwrt-%:
-	docker build --force-rm -t $(IMAGE)-$@ -f $(subst -,/,$@)/Dockerfile .
-	docker run --rm --entrypoint cat $(IMAGE)-$@ /bin.tgz > $(NAME)-$@-bin.tar.gz
+linux-%:
+	$(eval TGT := $(@:linux-%=%))
+	docker build --force-rm -t $(IMAGE)-$(TGT) --build-arg REV=$(VER) -f $(subst -,/,$(TGT))/Dockerfile .
+	docker run --rm --entrypoint cat $(IMAGE)-$(TGT) /bin.tgz > $(NAME)-$(TGT)-bin.tar.gz
 
 clean:
 	rm -f $(NAME)-*-bin.tar.gz
