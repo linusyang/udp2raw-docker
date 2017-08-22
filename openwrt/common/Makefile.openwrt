@@ -37,7 +37,7 @@ define Build/Compile
 	cd $(PKG_BUILD_DIR) && \
 	$(TARGET_CXX) -o "$(PKG_BUILD_DIR)/$(PKG_NAME)" \
 	$(TARGET_CXXFLAGS) $(TARGET_CPPFLAGS) $(TARGET_LDFLAGS) \
-	-std=c++11 -lpthread \
+	-s -std=c++11 -lpthread \
 	-Wall -Wextra -Wno-unused-variable \
 	-Wno-unused-parameter \
 	-Wno-missing-field-initializers \
